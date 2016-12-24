@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS文档</title>
+    <meta name="keywords" content="js,js array,JS文档,js data" />
+    <meta name="description" content="JS基本对象文档">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="icon" href="/images/logo.ico" type="image/x-icon">
+    <script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body>
+    <header>
+    <a href="/">
+        <h1>JS文档</h1>
+        </a>
+        <nav>
+            <a href="http://js.ch-un.com" class="selected">JS文档</a>
+            <a href="http://regexp.ch-un.com">正则表达式</a>
+            <a href="http://css.ch-un.com">CSS文档</a>
+            <a href="http://www.ch-un.com" target="_blank">关于我</a>
+        </nav>
+    </header>
+    <section>
+    	<div id="menu">
+    		<h2>JS基础对象</h2>
+    		<ul class="nav nav-list well">
+				<li><a href="#Object">Object</a></li>
+				<li><a href="#Array">Array</a></li>
+				<li><a href="#String">String</a></li>
+				<li><a href="#Date">Date</a></li>
+				<li><a href="#Number">Number</a></li>
+				<li><a href="#RegExp">RegExp</a></li>
+				<li><a href="#Map">Map</a></li>
+				<li><a href="#Set">Set</a></li>
+				<li><a href="#Function">Function</a></li>
+				<li><a href="#DataView">DataView</a></li>
+				<li><a href="#Symbol">Symbol</a></li>
+				<li><a href="#Generator">Generator</a></li>
+				<li><a href="#Iterator">Iterator</a></li>
+				<li><a href="#Promise">Promise</a></li>
+				<li><a href="#Proxy">Proxy</a></li>
+				<li><a href="#Reflect">Reflect</a></li>
+				<li><a href="#Math">Math</a></li>
+				<li><a href="#JSON">JSON</a></li>
+    		</ul>
+    	</div>
+    	<div id="doc">
+    	</div>
+    </section>
+</body>
+<script type="text/javascript">
+	$(function() {
+		var doms = getDoms("menu","doc");
+
+		function load(name) {
+			name = name||getIdByLocation("Object");
+			document.title = "ES6文档 - "+name;
+			$("#doc").html("loadding").load("./html/"+name+".html");
+		}
+
+		// $("#menu li a").click(function (){
+		// 	// var r = $(this).attr("title");
+		// 	load();
+		// });
+		window.onhashchange = function(){
+			load();
+		}
+
+		function getIdByLocation(def){
+			var hash  = window.location.hash;
+			return hash?hash.substring(1):def;
+		}
+
+		load();
+	});
+
+
+	function getDoms(){
+		var names = arguments;
+		var doms = {};
+		for(var i = 0; i < names.length; i++){
+			var name = names[i];
+			doms[name] = $("#"+name);
+		}
+		return doms;
+	}
+</script>
+</html>
